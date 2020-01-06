@@ -1,7 +1,14 @@
-import psycopg2
+from sqlalchemy import *
+from sqlalchemy.engine.url import URL
+from Database import settings
+from Database.settings import DATABASE
 
 
-def connect():
-    conn = psycopg2.connect(user='postgres', password='password', database='yourdatabase',
-                            host='localhost', port='5432')
+def db_connect():
+    """
+    Performs database connection using database settings from settings.py.
+    Returns sqlalchemy engine instance
+    """
+    database = create_engine(URL(**settings.DATABASE))
+    return database
 
