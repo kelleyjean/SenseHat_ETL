@@ -5,8 +5,9 @@ sense = SenseHat()
 
 
 def get_pressure():
+    pressure_list = []
     pressure = sense.get_pressure()
-
     timestamp = datetime.utcnow().isoformat()
-
-    return pressure
+    pressure_list.append(pressure)
+    pressure_list.append(timestamp)
+    return pressure_list
