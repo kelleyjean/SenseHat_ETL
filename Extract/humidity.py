@@ -4,6 +4,7 @@ from csv import writer, csv
 
 sense = SenseHat()
 
+
 def get_humidity():
     humidity_list = []
     humidity = sense.get_humidity()
@@ -14,8 +15,8 @@ def get_humidity():
 
 
 with open('humidity_data.csv', 'w', newline='') as file:
-	data_writer = writer(file)
-	
-	while True:
-		data = get_humidity()
-		data_writer.writerow(data)
+    data_writer = writer(file)
+
+    while True:
+        data = get_humidity()
+        data_writer.writerow(data)
