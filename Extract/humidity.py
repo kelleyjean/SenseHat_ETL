@@ -1,6 +1,7 @@
 from sense_hat import SenseHat
 from datetime import datetime
-from csv import writer, csv
+import csv
+from csv import writer
 
 sense = SenseHat()
 
@@ -14,7 +15,7 @@ def get_humidity():
     return humidity_list
 
 
-with open('humidity_data.csv', 'w', newline='') as file:
+with open('humidity_data.csv', 'w') as file:
     data_writer = writer(file)
 
     while True:
