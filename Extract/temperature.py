@@ -1,5 +1,8 @@
 from sense_hat import SenseHat
 from datetime import datetime
+import csv
+from csv import writer
+import time
 
 sense = SenseHat()
 
@@ -14,3 +17,10 @@ def get_temperature():
 	temp_list.append(timestamp)
 	return temp_list
 
+with open('temperature_data.csv', 'w') as file:
+    data_writer = writer(file)
+
+    while True:
+        data = get_temperature()
+        data_writer.writerow(data)
+        time.sleep(5)

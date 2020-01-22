@@ -2,7 +2,7 @@ from sense_hat import SenseHat
 from datetime import datetime
 import csv
 from csv import writer
-
+import time
 sense = SenseHat()
 
 
@@ -21,3 +21,4 @@ with open('humidity_data.csv', 'w') as file:
     while True:
         data = get_humidity()
         data_writer.writerow(data)
+        time.sleep(5)
