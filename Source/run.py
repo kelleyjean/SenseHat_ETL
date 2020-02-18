@@ -11,5 +11,8 @@ def run_process(process):
     os.system('python {}'.format(process))
 
 
-pool = Pool(processes=3)
-pool.map(run_process, processes)
+try:
+    pool = Pool(processes=3)
+    pool.map(run_process, processes)
+except KeyboardInterrupt:
+    print('Done.')
