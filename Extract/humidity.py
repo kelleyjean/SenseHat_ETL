@@ -5,6 +5,7 @@ from csv import writer
 import time
 sense = SenseHat()
 
+filepath = '/home/pi/Desktop/SenseHat_ETL/DataFiles/'
 
 def get_humidity():
     humidity_list = []
@@ -14,11 +15,15 @@ def get_humidity():
     humidity_list.append(timestamp)
     return humidity_list
 
-
-with open('humidity_data.csv', 'w') as file:
-    data_writer = writer(file)
-
-    while True:
-        data = get_humidity()
-        data_writer.writerow(data)
-        time.sleep(5)
+try:
+    
+    with open(filepath + 'humidity_data.csv', 'w') as file:
+        data_writer = writer(file)
+    
+        while True:
+            data = get_humidity()
+            data_writer.writerow(data)
+            time.sleep(30)
+        
+except KeyboardInterrupt:
+	print('Humidity Done.')

@@ -6,6 +6,7 @@ import time
 
 sense = SenseHat()
 
+filepath = '/home/pi/Desktop/SenseHat_ETL/DataFiles/'
 
 def get_temperature():
 	temp_list = []
@@ -17,10 +18,15 @@ def get_temperature():
 	temp_list.append(timestamp)
 	return temp_list
 
-with open('temperature_data.csv', 'w') as file:
-    data_writer = writer(file)
+try: 
+	
+	with open(filepath + 'temperature_data.csv', 'w') as file:
+		data_writer = writer(file)
 
-    while True:
-        data = get_temperature()
-        data_writer.writerow(data)
-        time.sleep(5)
+		while True:
+			data = get_temperature()
+			data_writer.writerow(data)
+			time.sleep(30)
+        
+except KeyboardInterrupt:
+	print('Temperature Done.')

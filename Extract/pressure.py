@@ -6,6 +6,7 @@ import time
 
 sense = SenseHat()
 
+filepath = '/home/pi/Desktop/SenseHat_ETL/DataFiles/'
 
 def get_pressure():
     pressure_list = []
@@ -15,10 +16,15 @@ def get_pressure():
     pressure_list.append(timestamp)
     return pressure_list
 
-with open('pressure_data.csv', 'w') as file:
-    data_writer = writer(file)
+try:
+    
+    with open(filepath + 'pressure_data.csv', 'w') as file:
+        data_writer = writer(file)
 
-    while True:
-        data = get_humidity()
-        data_writer.writerow(data)
-        time.sleep(5)
+        while True:
+            data = get_pressure()
+            data_writer.writerow(data)
+            time.sleep(30)
+        
+except KeyboardInterrupt:
+	print('Pressure Done.')
